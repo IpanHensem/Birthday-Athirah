@@ -1,0 +1,70 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url(wallpaper2_Nero_AI_Image_Upscaler_Photo_Face.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#container{
+    font-size: 1.25em;
+    font-family: "Bowlby One SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    -webkit-text-stroke: 2px rgb(134, 134, 134);
+    width : auto;
+    height : 88vh;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap-reverse;
+    gap : 50px;
+}
+
+.welcome{
+    animation-name: Glow;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+#welcome2:hover{
+    animation-play-state: paused;
+    cursor: url('paw-solid-full.svg'), pointer;
+}
+
+#welcome3:hover{
+    animation-play-state: paused;
+    cursor: url('paw-solid-full.svg'), pointer;
+}
+
+@keyframes Glow{
+    0%{
+        color:#ff4d4d;
+    }
+    20%{
+        color: #ff9933;
+    }
+    40%{
+        color: #ffff66;
+    }
+    60%{
+        color: #33ff99;
+    }
+    80%{
+        color: #3399ff;    
+    }
+    100%{  
+        color: #cc33ff;
+    }
+}
+
+
+
+
+

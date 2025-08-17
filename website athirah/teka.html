@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teka-Teki</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #fff8f0;
+      margin: 0;
+      padding: 30px;
+    }
+
+    .navbar {
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+    }
+
+    .nav-links li a {
+        color: white;
+        text-decoration: none;
+        font-size: 1em;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #444;
+    }
+
+    .card {
+      display: none;
+      background: #ffffff;
+      padding: 20px;
+      margin: 20px auto;
+      width: 70%;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .card.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    button {
+      padding: 8px 16px;
+      margin: 8px;
+      border: none;
+      border-radius: 8px;
+      background: #ffb347;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #ff9933;
+    }
+
+    .answer {
+      display: none;
+      margin-top: 10px;
+      color: green;
+      font-weight: bold;
+    }
+
+    .controls {
+      margin-top: 20px;
+    }
+
+    .controls button {
+      background: #87cefa;
+    }
+
+    .controls button:hover {
+      background: #1e90ff;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Teka-Teki</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sudoku.html">Sudoku</a></li>
+            <li>Teka-Teki</a></li>
+            <li><a href="2048.html">2048</a></li>
+        </ul>
+    </nav>
+
+  <h1>Teka-Teki</h1>
+
+  <!-- START of teka teki cards -->
+  <div class="card active">
+    <p><strong>Teka-teki 1:</strong> Banyak kaki tapi tak boleh berjalan. Apakah dia?</p>
+    <p><strong>Hint:</strong> Ada kat sekolah wak</p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">Meja</p>
+  </div>
+
+  <div class="card">
+    <p><strong>Teka-teki 2:</strong> Bulat, selalu di padang, ditendang orang. Apa dia?</p>
+    <p><strong>Hint:</strong> Laki suka ni</p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">Bola</p>
+  </div>
+
+  <div class="card">
+    <p><strong>Teka-teki 3:</strong> Semakin digunting semakin panjang. Apa dia?</p>
+    <p><strong>Hint:</strong> Mahkota lelaki orang kata</p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">Rambut</p>
+  </div>
+
+  <div class="card">
+    <p><strong>Teka-teki 4:</strong> Apa sushi cakap kat lebah?</p>
+    <p><strong>Hint:</strong> HAHAHHA saya pernah bagi ni</p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">Wasabi</p>
+  </div>
+
+  <div class="card">
+    <p><strong>Teka-teki 5:</strong> Kalau sekor singa backflip, singa lain cakap apa?</p>
+    <p><strong>Hint:</strong> Fikir sendiri wak</p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">Lion dari yang lion</p>
+  </div>
+
+  <div class="card">
+    <p><strong>Teka-teki 6:</strong> Kertas kalau nak gerak dia cakap apa?</p>
+    <p><strong>Hint:</strong> HHAHAHAHA</p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">Geraklu paper roger</p>
+  </div>
+
+  <div class="card">
+    <p><strong>Teka-teki 7:</strong> Ikan apa yang suka hiking?</p>
+    <p><strong>Hint:</strong> Orang selalu buat sup</p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">Ikan Jerung sebab dia suka aktiviti lashark</p>
+  </div>
+
+  <div class="card">
+    <p><strong>Teka-teki 8:</strong> Negara apa paling sejuk?</p>
+    <p><strong>Hint:</strong> Negara arab woo</p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">Qatar sebab terqatar-qatar</p>
+  </div>
+
+  <div class="card">
+    <p><strong>Teka-teki 9:</strong> Someone come to me and asked me to tell them a joke about sodium</p>
+    <p><strong>Hint:</strong> Kimia sikit wakk</p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">I said Na</p>
+  </div>
+
+  <div class="card">
+    <p><strong>Teka-teki 10:</strong> What do you say to your sister when she's crying?</p>
+    <p><strong>Hint:</strong> Tragedi sungguh ni</p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">Are you having a crisis?</p>
+  </div>
+
+  <div class="card">
+    <p><strong>Teka-teki 11:</strong> What do you call a sick eagle?</p>
+    <p><strong>Hint:</strong> ishh salah disisi undang ii tau</p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">Illegal</p>
+  </div>
+
+  <div class="card">
+    <p><strong>Teka-teki 12:</strong> How do you cut an ocean in half?</p>
+    <p><strong>Hint:</strong> Budak ii suka , eh tapi awak pun budak ii </p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">Using a sea saw</p>
+  </div>
+
+  <div class="card">
+    <p><strong>Teka-teki 13:</strong> What is made of leather and sounds like a snooze?</p>
+    <p><strong>Hint:</strong> HAHAHAHAHA tak bolehla saya yang ni</p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">A shoe</p>
+  </div>
+
+  <div class="card">
+    <p><strong>Teka-teki 14:</strong> I downloaded the titanic soundtrack</p>
+    <p><strong>Hint:</strong> Dark sikit ni</p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">It started syncing</p>
+  </div>
+
+  <div class="card">
+    <p><strong>Teka-teki 15:</strong> What would you say if you lost 25% of your roof?</p>
+    <p><strong>Hint:</strong> Player roblox tau ni</p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">oof</p>
+  </div>
+
+  <div class="card">
+    <p><strong>Teka-teki 16:</strong> How much does a chimney cost?</p>
+    <p><strong>Hint:</strong> Suka betul belanja orang</p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">Nothing, It's on the house</p>
+  </div>
+
+  <div class="card">
+    <p><strong>Teka-teki 17:</strong> What do you call an orphan taking a selfie?</p>
+    <p><strong>Hint:</strong> Pegh ni dark jugak</p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">A family photo</p>
+  </div>
+
+  <div class="card">
+    <p><strong>Teka-teki 18:</strong> I dont trust stair. Do you know why?</p>
+    <p><strong>Hint:</strong> HHAHAHAHAHA</p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">They are always up to something</p>
+  </div>
+
+  <div class="card">
+    <p><strong>Teka-teki 19:</strong> I told my father to embrace his mistakes. You know what he did?</p>
+    <p><strong>Hint:</strong> ni semua orang buat bila sedih/gembira </p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">He gave me a hug</p>
+  </div>
+
+  <div class="card">
+    <p><strong>Teka-teki 20:</strong> What do you call acid with an attitude?</p>
+    <p><strong>Hint:</strong> Ni bio ke kimia eh? tahlaa</p>
+    <button onclick="showAnswer(this)">Show Answer</button>
+    <p class="answer">A-mean-o-acid</p>
+  </div>
+  <!-- END of teka teki cards -->
+
+  <!-- Navigation -->
+  <div class="controls">
+    <button onclick="prevCard()">⬅ Prev</button>
+    <button onclick="nextCard()">Next ➡</button>
+    <br>
+    <div id="navButtons"></div>
+  </div>
+
+  <script>
+    let currentCard = 0;
+    const cards = document.querySelectorAll(".card");
+
+    // generate numbered buttons
+    const navButtons = document.getElementById("navButtons");
+    cards.forEach((_, i) => {
+      const btn = document.createElement("button");
+      btn.textContent = i + 1;
+      btn.onclick = () => showCard(i);
+      navButtons.appendChild(btn);
+    });
+
+    function showCard(index) {
+      cards[currentCard].classList.remove("active");
+      currentCard = index;
+      cards[currentCard].classList.add("active");
+    }
+
+    function nextCard() {
+      let next = (currentCard + 1) % cards.length;
+      showCard(next);
+    }
+
+    function prevCard() {
+      let prev = (currentCard - 1 + cards.length) % cards.length;
+      showCard(prev);
+    }
+
+    function showAnswer(button) {
+      const answer = button.nextElementSibling;
+      answer.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>

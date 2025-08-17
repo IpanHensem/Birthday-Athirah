@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>For Athirah 🎂</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg1:#9F3CFF;
+    --bg2:#9AD1FF;
+    --ink:#222;
+    --paper:#fff8f5;
+    --accent:#ff7cc2;
+    --edge:#d9c3ff;
+    --btn:#333;
+    --btnText:#fff;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{
+    margin:0;
+    min-height:100%;
+    font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color:var(--ink);
+    background: linear-gradient(120deg,var(--bg1),var(--bg2));
+    overflow-x:hidden;
+  }
+
+  /* Landing (cover overlay) */
+  .landing{
+    position:fixed; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,.2), rgba(255,255,255,0) 60%);
+    backdrop-filter: blur(2px);
+    z-index: 5;
+  }
+  .landing-card{
+    background: var(--paper);
+    width:min(92vw,720px);
+    padding:28px 24px;
+    border-radius:24px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25), inset 0 0 0 2px var(--edge);
+    text-align:center;
+  }
+  .landing-card h1{
+    font-family: "Playfair Display", serif;
+    font-size:clamp(28px, 5vw, 44px);
+    margin:8px 0 4px;
+    letter-spacing:.5px;
+  }
+  .landing-card p{ margin:0 0 18px; opacity:.8 }
+  .btn{
+    appearance:none; border:0; cursor:pointer;
+    background:var(--btn); color:var(--btnText);
+    padding:12px 18px; border-radius:999px; font-weight:700;
+    box-shadow:0 10px 20px rgba(0,0,0,.25);
+    transition: transform .1s ease, box-shadow .2s ease;
+  }
+  .btn:active{ transform: translateY(1px); box-shadow:0 6px 14px rgba(0,0,0,.25); }
+
+  /* Book wrapper */
+  .wrap{
+    max-width: 1000px;
+    margin: 84px auto 48px;
+    padding: 0 16px;
+  }
+
+  /* top bar with controls */
+  .controls{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:12px; margin-bottom:16px; color:#fff;
+  }
+  .controls .title{
+    font-weight:700; letter-spacing:.5px;
+    text-shadow:0 2px 10px rgba(0,0,0,.25);
+  }
+  .control-right{ display:flex; align-items:center; gap:10px; }
+  .toggle{
+    display:inline-flex; align-items:center; gap:8px;
+    background: rgba(255,255,255,.2);
+    color:#fff; padding:8px 12px; border-radius:999px;
+    cursor:pointer; user-select:none;
+  }
+
+  /* Card book */
+  .book{
+    position:relative;
+    background: var(--paper);
+    border-radius: 24px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.35), inset 0 0 0 2px var(--edge);
+    overflow: hidden;
+    padding: 0;
+  }
+  .page{
+    display:none;
+    min-height: min(80vh, 680px);
+    padding: clamp(18px, 3vw, 28px);
+  }
+  .page.active{ display:block; }
+
+  /* Front & Back */
+  .front{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:10px; text-align:center;
+    background:
+      radial-gradient(1200px 400px at 20% 0%, rgba(255,124,194,.08), transparent 70%),
+      radial-gradient(1200px 400px at 80% 100%, rgba(159,60,255,.09), transparent 70%),
+      var(--paper);
+  }
+  .front h2{
+    font-family: "Playfair Display", serif;
+    font-size: clamp(36px, 7vw, 64px);
+    margin: 0;
+  }
+  .front .subtitle{ opacity:.75 }
+
+  /* Inside page (3 columns like a real card) */
+  .inside{
+    display:grid;
+    grid-template-columns: 1fr minmax(260px, 520px) 1fr;
+    gap: clamp(12px, 2vw, 24px);
+    align-items: stretch;
+  }
+  .panel{
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #eee;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.035);
+    padding: clamp(12px, 2vw, 20px);
+  }
+  .panel.decor{
+    display:flex; align-items:center; justify-content:center;
+    background:
+      repeating-linear-gradient(135deg, #ffe3f1 0 10px, #e8f0ff 10px 20px);
+    opacity:.85;
+  }
+  .panel.decor .doodle{
+    font-size: clamp(24px, 6vw, 40px);
+    line-height: 1.3;
+    text-align:center;
+  }
+  .panel.message{
+    background: #fffdfc;
+  }
+  .panel.message h3{
+    font-family:"Playfair Display", serif;
+    font-size: clamp(22px, 3.6vw, 30px);
+    margin: 6px 0 12px;
+    text-align:center;
+  }
+  .panel.message p{ margin: 10px 0; line-height:1.7; }
+
+  /* Back */
+  .back{
+    display:flex; align-items:center; justify-content:center; text-align:center;
+  }
+
+  /* Nav arrows */
+  .nav{
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 14px 16px;
+    background: linear-gradient(to bottom, rgba(0,0,0,.04), rgba(0,0,0,0));
+  }
+  .nav .arrow{
+    appearance:none; border:0; background:#111; color:#fff;
+    border-radius:12px; padding:10px 14px; font-weight:700; cursor:pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,.25);
+  }
+  .nav .pager{ font-weight:700; opacity:.7 }
+
+  /* Confetti canvas */
+  canvas#fx{
+    position: fixed; inset:0; pointer-events:none; z-index: 10;
+  }
+
+  /* Small screens */
+  @media (max-width: 700px){
+    .inside{
+      grid-template-columns: 1fr;
+    }
+    .panel.decor{ order:-1; }
+  }
+
+  .navbar {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1em;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #ff9800; /* orange highlight on hover */
+}
+</style>
+</head>
+<body>
+
+
+ <nav class="navbar">
+        <div class="logo">Happy birthday</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="game.html">Game</a></li>
+        </ul>
+    </nav>
+
+<canvas id="fx"></canvas>
+
+<!-- Landing -->
+<section class="landing" id="landing">
+  <div class="landing-card">
+    <p style="margin:0;letter-spacing:.5px;color:#777;">For</p>
+    <h1>Athirah 🎂</h1>
+    <p class="subtitle">A little birthday card — made with effort.</p>
+    <button class="btn" id="openCard">Open Card</button>
+  </div>
+</section>
+
+<div class="wrap" id="app" style="display:none;">
+  <div class="controls">
+    <div class="title">🎂 Happy 19th, Athirah</div>
+    <div class="control-right">
+      <label class="toggle"><input type="checkbox" id="musicToggle"> Music</label>
+    </div>
+  </div>
+
+  <article class="book" id="book">
+
+    <!-- PAGE 1: Front cover -->
+    <section class="page front active">
+      <h2>For Athirah 🔥</h2>
+      <div class="subtitle">Tap next to open</div>
+    </section>
+
+    <!-- PAGE 2: Inside (left decor, center message, right decor) -->
+    <section class="page inside">
+      <div class="panel decor">
+        <div class="doodle">🎈🎀<br>🌸✨<br>🎊🎉</div>
+      </div>
+
+      <div class="panel message">
+        <h3>From Me, with a smile 🙂</h3>
+        <p>Assalamualaikum awakk,</p>
+        <p>Peghhh ada orang tu dah 19 tahun 😗 besor panjang dah… eh lupa pendek je HAHAHAHA jkjk gurau je.</p>
+        <p>Saya just nak cakap terima kasih sebab dah jadi kawan saya post UIA ni. As you know, saya tak ramai kawan pp… bola kira wak 😇 so terima kasih tau hehe. Jaga diri wak ehh, ramai sayang awak.</p>
+        <p>Maaf ehh kalau selama ni saya ada buat awak tak selesa, marah, and sakit hati ke apa kan. Saya harap awak terus jadi kawan saya.</p>
+        <p>Senanya wak, website ni saya tak sempat nak siapkan laa, sorry tauu tak sempat nak decorate 😭😭😭. Minggu ni busy gile doo, macam-macam kerja saya buat, tolong pasang kemah la, tolong siapkan catering. Saya ingat nak cerita kat awak sikit, tapi awak tak chat saya. Takpe saya okay jee.</p>
+        <p>Ye saya tau awak okey je kalau saya chat dulu, tapi nanti awak tetiba hilang, saya jugak yang susah hati. Tapi takpe saya cuba paham, maybe awak busy kan. Cuma tu la, tipu la kalau saya cakap tak rasa apa-apa hehehe. Saya rindu nak chat dengan awak lama-lama macam dulu, and back then pun awak macam excited nak layan saya. Sorry wak, mesti dah muak dengar saya cakap rindu tu.</p>
+        <p>Tapi all in all, terima kasih wak eh jadi kawan saya. Kalau nak cakap pasal rasa suka tu, tipulah kalau saya kata saya takde langsung. Adelah sikit. Tapi takdela teruk sangat. Sikit je sikit. Sorry tau wak, saya ni cepat catch feeling sikit.</p>
+        <p>Saya tau awak nak kawan je, and saya okay je. Serious. Please don’t stop being friend with me. Saya ingat nak borak pasal ni panjang sikit tau, tapi saya takut awak tak selesa… so takpelah. Awak nak kawan saya sebab cool, tapi dah tak cool dah ni 😔😔. Eh sorry wakk terpanjang sangat pulak, saya harap awak baca sampai habis tauu, btw saya buat sendiri je website ni. ChatGPT tu saya pakai nak check betul ke tak tau. Awak tau, saya kena belajar balik sebab dah lupa HAHAHAHA</p>
+        <p><strong>Anyway wak, selamat hari jadi yang ke-19!</strong> Saya doakan awak semoga dipermudahkan rezeki, dipanjangkan umur, diberikan kesihatan yang berkekalan, jadi anak yang solehah, jadi kawan yang baik, dan macam-macam lagilah benda baik. Byee 🌟</p>
+      </div>
+
+      <div class="panel decor">
+        <div class="doodle">💐💫<br>🧁🎀<br>💖🎇</div>
+      </div>
+    </section>
+
+    <!-- PAGE 3: Back cover -->
+    <section class="page back">
+      <div>
+        <p style="margin:0 0 8px">From:</p>
+        <h3 style="margin:0;font-family:'Playfair Display',serif;">A Friend</h3>
+        <p style="opacity:.65;margin-top:10px">Khas Untuk Awak</p>
+      </div>
+    </section>
+
+    <!-- Nav -->
+    <div class="nav">
+      <button id="prev" class="arrow">⟵ Prev</button>
+      <div class="pager" id="pager">1 / 3</div>
+      <button id="next" class="arrow">Next ⟶</button>
+    </div>
+  </article>
+</div>
+
+<!-- Optional music: replace src with your file -->
+<audio id="song" loop>
+  <!-- Replace with your own file path -->
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  // --- Elements
+  const landing = document.getElementById('landing');
+  const openBtn = document.getElementById('openCard');
+  const app = document.getElementById('app');
+  const pages = Array.from(document.querySelectorAll('.page'));
+  const pager = document.getElementById('pager');
+  const nextBtn = document.getElementById('next');
+  const prevBtn = document.getElementById('prev');
+  const musicToggle = document.getElementById('musicToggle');
+  const song = document.getElementById('song');
+  const fx = document.getElementById('fx');
+  const ctx = fx.getContext('2d');
+
+  // --- State
+  let current = 0;
+  let started = false;
+
+  // --- Resize canvas
+  function sizeCanvas(){
+    fx.width = innerWidth;
+    fx.height = innerHeight;
+  }
+  addEventListener('resize', sizeCanvas);
+  sizeCanvas();
+
+  // --- Show a page
+  function showPage(i){
+    current = Math.max(0, Math.min(i, pages.length-1));
+    pages.forEach((p, idx)=> p.classList.toggle('active', idx === current));
+    pager.textContent = (current+1) + " / " + pages.length;
+  }
+
+  // --- Nav
+  nextBtn.addEventListener('click', ()=> showPage(current+1));
+  prevBtn.addEventListener('click', ()=> showPage(current-1));
+
+  // --- Landing open
+  openBtn.addEventListener('click', () => {
+    landing.style.display = 'none';
+    app.style.display = 'block';
+    if(!started){ started = true; burstConfetti(); }
+    // Try to start music if toggle is on (after user gesture)
+    if(musicToggle.checked){
+      song.volume = 0.25;
+      song.play().catch(()=>{ /* ignore */ });
+    }
+  });
+
+  // --- Music toggle
+  musicToggle.addEventListener('change', (e)=>{
+    if(e.target.checked){
+      song.volume = 0.25;
+      song.play().catch(()=>{ /* may need user interaction */ });
+    }else{
+      song.pause();
+    }
+  });
+
+  // --- Confetti
+  function burstConfetti(){
+    const count = 180;
+    const confs = [];
+    for(let i=0;i<count;i++){
+      confs.push({
+        x: Math.random()*fx.width,
+        y: -20 - Math.random()*200,
+        vx: (Math.random()-.5)*4,
+        vy: 2+Math.random()*3,
+        size: 6+Math.random()*6,
+        rot: Math.random()*Math.PI*2,
+        vr: (Math.random()-.5)*0.2,
+        life: 120+Math.random()*80,
+        color: randomColor()
+      });
+    }
+
+    let frame = 0;
+    function tick(){
+      ctx.clearRect(0,0,fx.width,fx.height);
+      confs.forEach((c)=>{
+        c.vy += 0.02; // gravity
+        c.x += c.vx;
+        c.y += c.vy;
+        c.rot += c.vr;
+        c.life--;
+        // draw
+        ctx.save();
+        ctx.translate(c.x,c.y);
+        ctx.rotate(c.rot);
+        ctx.fillStyle = c.color;
+        ctx.fillRect(-c.size/2,-c.size/2, c.size, c.size);
+        ctx.restore();
+      });
+      // keep alive while some still on screen
+      if(frame++ < 300){
+        requestAnimationFrame(tick);
+      }else{
+        ctx.clearRect(0,0,fx.width,fx.height);
+      }
+    }
+    tick();
+  }
+
+  function randomColor(){
+    const palette = ['#ff4d9d','#ffd166','#06d6a0','#118ab2','#9F3CFF','#9AD1FF'];
+    return palette[Math.floor(Math.random()*palette.length)];
+  }
+
+  // Initialize first page
+  showPage(0);
+</script>
+
+</body>
+</html>
